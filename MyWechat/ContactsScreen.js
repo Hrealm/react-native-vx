@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ImageBackground, StatusBar, Image, SectionList, StyleSheet } from 'react-native'
+import { View, Text, Image, SectionList, StyleSheet, StatusBar } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from "react-navigation"
 
 import { FindScreen } from './FindScreen';
@@ -31,7 +31,7 @@ class ContactsScreen extends Component {
                         {title:"",data:[{userHead:require('./img/newFriend.png'),name:"新的朋友"},{userHead:require('./img/群聊.png'),name:"群聊"},{userHead:require('./img/微信标签.png'),name:"标签"},{userHead:require('./img/公众号图标.png'),name:"公众号"}]},
                         {title:"A",data:[{userHead:myHeadImg,name:"阿猫"},{userHead:myHeadImg,name:"阿狗"}]},
                         {title:"B",data:[{userHead:myHeadImg,name:"B猫"},{userHead:myHeadImg,name:"B狗"}]},
-                        {title:"C",data:[{userHead:myHeadImg,name:"C猫"},{userHead:myHeadImg,name:"C狗"}]},
+                        {title:"C",data:[{userHead:myHeadImg,name:"C猫"},{userHead:myHeadImg,name:"C狗"},{userHead:myHeadImg,name:"C猪"}]},
                     ]}
                     renderSectionHeader={({section})=>{return <Text style={section.title == "" ? {display:"none"} : styles.sectionTitle}>{section.title}</Text>}}
                     renderItem={({item})=>{return(
@@ -47,6 +47,14 @@ class ContactsScreen extends Component {
                 </SectionList>
             </View>
         )
+    }
+    componentDidMount(){
+        this.navListener = this.props.navigation.addListener('didFocus',()=>{
+            StatusBar.setBackgroundColor("#EDEDED");
+        })
+    }
+    componentWillUnmount(){
+        this.navListener.remove();
     }
 }
 
@@ -90,7 +98,7 @@ export const TabNavigatorRoute = createBottomTabNavigator(
             screen: MessageToChat,
             navigationOptions: {
                 tabBarIcon: ({ focused }) => renderTabBar("icon", 0, focused),
-                tabBarLabel: ({ focused }) => renderTabBar("label", 0, focused)
+                tabBarLabel: ({ focused }) => renderTabBar("label", 0, focused),
             }
         },
         Contacts: {
@@ -111,7 +119,7 @@ export const TabNavigatorRoute = createBottomTabNavigator(
             screen: MeScreen,
             navigationOptions: {
                 tabBarIcon: ({ focused }) => renderTabBar("icon", 3, focused),
-                tabBarLabel: ({ focused }) => renderTabBar("label", 3, focused)
+                tabBarLabel: ({ focused }) => renderTabBar("label", 3, focused),
             }
         }
 
@@ -119,6 +127,8 @@ export const TabNavigatorRoute = createBottomTabNavigator(
         tabBarOptions:{
             // activeBackgroundColor: '#F7F7F7',//活动选项卡的背景颜色
             // inactiveBackgroundColor: '#F7F7F7',//非活动选项卡的背景颜色
+            
+            //修改底部导航栏样式
             style:{
                 backgroundColor:"#F7F7F7",
                 height:53,

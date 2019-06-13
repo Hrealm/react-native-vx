@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ImageBackground, StatusBar, Image, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, ImageBackground, StatusBar, Image, FlatList, TouchableOpacity, StyleSheet, BackHandler } from 'react-native'
 // import { createStackNavigator, createBottomTabNavigator } from "react-navigation"
 import { TitleBar } from './TitleBar'
 
@@ -44,7 +44,7 @@ export class MessageScreen extends Component {
         
 
         return (
-            <View style={{paddingBottom:50}}>
+            <View style={{flex:1,backgroundColor:"#EDEDED"}}>
                 <TitleBar title={"微信"} tips={"(2)"} />
                 <FlatList
                     data={dataArr}
@@ -73,38 +73,6 @@ export class MessageScreen extends Component {
                                 </ItemView>
                             </TouchableOpacity>
                         )
-
-
-
-                        // <TouchableOpacity
-                        //     onPress={() => {
-                        //         this.props.navigation.navigate(
-                        //             "Chat",{
-                        //                 id: item.id,
-                        //                 name: item.name,
-                        //                 //从下一个页面返回回来的数据在这里接收
-                        //                 refresh: (id, message) => {
-                        //                     //新建数组，将原数组内容赋给它
-                        //                     var newMsgArr = this.state.msgArr
-                        //                     //将新数组中id对应的元素赋给新建数组
-                        //                     newMsgArr[id] = message
-                        //                     //将修改后的新数组设置给state
-                        //                     this.setState({ msgArr: newMsgArr })
-                        //                 }
-                        //             }
-                        //         )
-                        //     }}>
-
-                        // {/* <View style={{ padding: 5, borderBottomColor: "#ccc", borderBottomWidth: 0.5, height: 70 }}>
-                        //     <Text style={{ fontSize: 16 }}>
-                        //         {item.name}
-                        //     </Text>
-                        //     <Text style={{ fontSize: 12 }}>
-                        //         {item.messages}
-                        //     </Text>
-                        // </View> */}
-                        // </TouchableOpacity>
-
                     }}
                     keyExtractor={(item, index) => index.toString()}
                 />
@@ -116,6 +84,18 @@ export class MessageScreen extends Component {
     componentDidMount() {
         var defaultMsgArr = ["[文件]", "今晚吃什么", "借还伞", "今晚打球吗", "微信支付凭证", "[夜读]在变老的路上，变好", "[应用消息]"]
         this.setState({ msgArr: defaultMsgArr })
+        this.navListener = this.props.navigation.addListener('didFocus',()=>{
+            StatusBar.setBackgroundColor("#EDEDED");
+        });
+        // 添加监听
+        BackHandler.addEventListener('hardwareBackPress',this.onBackPressed=()=>{
+            BackHandler.exitApp();
+        })
+    }
+    componentWillUnmount(){
+        this.navListener.remove();
+        // 移除监听
+        BackHandler.removeEventListener('hardwareBackPress',this.onBackPressed);
     }
 }
 

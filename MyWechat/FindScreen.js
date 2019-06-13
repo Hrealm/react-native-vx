@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Text,Image,FlatList,StyleSheet } from 'react-native'
+import { View,Text,Image,FlatList,StyleSheet, StatusBar } from 'react-native'
 import { TitleBar } from './TitleBar';
 
 
@@ -48,6 +48,14 @@ export class FindScreen extends Component{
             </View>
             
         )
+    }
+    componentDidMount(){
+        this.navListener = this.props.navigation.addListener('didFocus',()=>{
+            StatusBar.setBackgroundColor("#EDEDED");
+        })
+    }
+    componentWillUnmount(){
+        this.navListener.remove();
     }
 }
 

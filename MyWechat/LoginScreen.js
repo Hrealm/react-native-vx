@@ -3,7 +3,6 @@ import { View,Image,Text,TextInput,TouchableOpacity,StyleSheet, AsyncStorage, To
 
 
 export class LoginScreen extends Component{
-
     constructor(props){
         super(props);
         this.state={
@@ -11,14 +10,16 @@ export class LoginScreen extends Component{
             isShow: false,
         }
     }
-
     render(){
         return(
             <View style={styles.container}>
                 {/* //隐藏状态栏 */}
                 <StatusBar  animated={true} hidden={false} backgroundColor="#EDEDED" barStyle="dark-content"/>
+                {/* header */}
                 <Image style={styles.headImage} source={require("./img/userHead/realm.jpg")}/>
                 <Text style={styles.userPhone}>+86 150 8961 9097</Text>
+                
+                {/* 输入部分 */}
                 <View style={styles.inputWrap}>
                     <Text style={styles.passwordTxt}>密码</Text>
                     <TextInput ref="refInput" style={styles.passwordInput} placeholder="请填写微信密码" placeholderTextColor="#BCBCBC" secureTextEntry 
@@ -30,9 +31,15 @@ export class LoginScreen extends Component{
                     </TouchableOpacity>
                 </View>
                 <Text style={styles.otherLogin}>用短信验证码登录</Text>
+
+                {/* 登录按钮 */}
                 <View style={{marginTop:45}}>
                     <TouchableOpacity style={this.state.isShow ? {display:"flex"} : {display:"none"}} activeOpacity={0.9}
                         onPress={()=>{
+                                if(this.state.pass.length <= 6){
+                                    ToastAndroid.show("密码不能少于6位，请重新输入",ToastAndroid.SHORT);
+                                    return;
+                                }
                                 this.writeUserData(this.state.pass);
                                 this.props.navigation.navigate("Main")
                             }}>
@@ -44,6 +51,8 @@ export class LoginScreen extends Component{
                         <Text style={styles.loginBtnText}>登录</Text>
                     </View>
                 </View>
+
+                {/* footer */}
                 <View style={styles.footer}>
                     <View style={styles.footerContent}>
                         <TouchableOpacity activeOpacity={0.8}>

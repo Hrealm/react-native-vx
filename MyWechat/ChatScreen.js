@@ -39,7 +39,9 @@ class ChatScreen extends Component {
         const name = data.name;
         const userHead = data.userHead;
         const myHeadImg = require('./img/userHead/realm.jpg');
-        // var msg = "";
+        var arr1 =[],arr2=[]
+        arr1 = this.state.myMsgArr
+        arr2 = this.state.youMsgArr
 
         var msgList = [];
         // var myMsgArr = ["今晚吃什么","吃完饭打球吗","ok"];
@@ -62,6 +64,7 @@ class ChatScreen extends Component {
                     </View>
                     <Image style={styles.imgTitleBar} source={require('./img/more.png')} />
                 </View>
+
                 {/* Content */}
                 <View style={styles.content}>
                     <FlatList
@@ -80,6 +83,7 @@ class ChatScreen extends Component {
                         keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
+                
                 {/* edit */}
                 <View style={styles.edit}>
                     <Image style={styles.voice} source={require('./img/voice.png')} />
@@ -95,10 +99,7 @@ class ChatScreen extends Component {
                             Alert.alert("发送定位","",[{
                                 text:"确定",
                                 onPress:()=>{
-                                    var arr1 =[],arr2=[]
-                                    arr1 = this.state.myMsgArr
                                     arr1.push(this.state.result)
-                                    arr2 = this.state.youMsgArr
                                     arr2.push("")
                                     this.setState({myMsgArr:arr1,youMsgArr:arr2,message:result})
                                 }
@@ -108,10 +109,7 @@ class ChatScreen extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={this.state.isShow ? styles.sendBtn : { display: "none" }}
                         onPress={()=>{
-                            var arr1 =[],arr2=[]
-                            arr1 = this.state.myMsgArr
                             arr1.push(this.state.message)
-                            arr2 = this.state.youMsgArr
                             arr2.push("")
                             this.setState({myMsgArr:arr1,youMsgArr:arr2})
                             this.refs.refInput.clear()
@@ -121,55 +119,6 @@ class ChatScreen extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-
-
-
-
-            // <View style={{padding:5}}>
-            //     <Text>
-            //         {"你正在与"+name+"聊天\n发送的消息内容："}
-            //     </Text>
-            //     <Text>
-            //         {this.state.message}
-            //     </Text>
-            //     {/* <TextInput ref="refInput" style={{borderBottomColor:"#aaa",borderBottomWidth:0.5}} 
-            //     onChangeText={(text) => {editMsg = text
-            //          this.setState(text.length >= 1 ? { isShow: true } : { isShow: false })}}></TextInput> */}
-            //     <TextInput
-            //     //取引用名称
-            //         ref="refInput"
-            //         style={{borderBottomColor:"#aaa",borderBottomWidth:0.5}}
-            //         // onChangeText={(text)=>{
-            //         //     editMsg = text
-            //         // }}
-            //         onChangeText={(text) => {
-            //             editMsg = text;
-            //             // this.setState({message:text})
-            //             // this.setState(text.length >= 1 ? { isShow: true } : { isShow: false })
-            //         }}
-            //     >
-            //     </TextInput>
-            //     <Button
-            //         title="发送"
-            //         onPress={()=>{
-            //             this.setState({message:editMsg})
-            //             //给引用名称叫“refInput”的组件清空内容
-            //             this.refs.refInput.clear()
-            //         }}
-            //     />
-            //     <View style={{marginTop:5}}>
-            //         <Button title="返回"
-            //             onPress={()=>{
-            //                 //将id和message返回给上一页面
-            //                 this.props.navigation.state.params.refresh(
-            //                     id,this.state.message
-            //                 )
-            //                 //返回上一个页面
-            //                 this.props.navigation.goBack()
-            //             }}
-            //         />
-            //     </View>
-            // </View>
         )
     }
     componentDidMount(){
