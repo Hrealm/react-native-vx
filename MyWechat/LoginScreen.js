@@ -17,7 +17,7 @@ export class LoginScreen extends Component{
                 <StatusBar  animated={true} hidden={false} backgroundColor="#EDEDED" barStyle="dark-content"/>
                 {/* header */}
                 <Image style={styles.headImage} source={require("./img/userHead/realm.jpg")}/>
-                <Text style={styles.userPhone}>+86 150 8961 9097</Text>
+                <Text style={styles.userPhone}>+86 188 8888 8888</Text>
                 
                 {/* 输入部分 */}
                 <View style={styles.inputWrap}>
