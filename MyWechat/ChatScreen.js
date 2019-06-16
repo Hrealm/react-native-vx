@@ -88,11 +88,8 @@ class ChatScreen extends Component {
                 <View style={styles.edit}>
                     <Image style={styles.voice} source={require('./img/voice.png')} />
                     <TextInput ref="refInput" style={styles.editText} onChangeText={(text) => {
-                        // msg=text
-                        // ToastAndroid.show(msg,ToastAndroid.SHORT)
                         this.setState({message:text}), 
                         this.setState(text.length >= 1 ? { isShow: true } : { isShow: false })
-                        
                         }}></TextInput>
                     <TouchableOpacity activeOpacity={0.9}
                         onPress={()=>{

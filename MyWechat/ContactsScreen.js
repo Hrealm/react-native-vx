@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Image, SectionList, StyleSheet, StatusBar } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from "react-navigation"
-
 import { FindScreen } from './FindScreen';
 import { MeScreen } from './MeScreen';
 import { MessageToChat } from './ChatScreen'

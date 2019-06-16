@@ -31,8 +31,6 @@ export class MeScreen extends Component{
         ]
         return(
             <View style={{flex:1,backgroundColor:"#EDEDED"}}>
-                {/* 状态栏 */}
-                {/* <StatusBar  animated={true} hidden={false} backgroundColor="#fff" barStyle="dark-content"/> */}
                 {/* header */}
                 <View style={styles.headerWrap}>
                     <View style={styles.myTitle}>
