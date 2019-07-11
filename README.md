@@ -7,7 +7,7 @@
 - watchPosition([callback])  监控位置变更时进行函数回调
 
 
-<img src="MyWechat\img\result\myWeChat.gif" width="29%" height="30%"/>
+<img src="MyWechat\img\result\myWeChat.gif" width="30%" height="29%"/>
 
 ## Build Setup
 
