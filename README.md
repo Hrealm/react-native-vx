@@ -13,7 +13,10 @@
 
 ``` bash
 # clone project
-git clone git@github.com:Hrealm/RN-wechatLayout.git
+git clone git@github.com:Hrealm/react-native-vx.git
+
+# enter project folder
+cd react-native-vx
 
 # install dependencies
 npm install
