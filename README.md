@@ -1,4 +1,4 @@
-# RN-wechatLayout
+# react-native-vx
 
 - React Native 仿微信布局
 
