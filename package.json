@@ -9,7 +9,7 @@
   "dependencies": {
     "@types/react-navigation": "^3.0.7",
     "react": "16.6.3",
-    "react-native": "0.58.6",
+    "react-native": "0.70.2",
     "react-navigation": "^2.18.3"
   },
   "devDependencies": {
